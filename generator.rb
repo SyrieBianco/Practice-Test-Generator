@@ -34,16 +34,47 @@ categories.keys.each do |category|
 end
 puts puts
 
-# get user request
-puts "Input your requests, separated by commas and spaces please"
-puts "Example input: " + "array: 2, recursion: 1, sort: 1".yellow
-input = gets.chomp.split(", ")
 
-categoryrequests = Hash.new(0)
-input.each do |request|
-  req = request.downcase.split(": ")
-  categoryrequests[req[0]] = req[1].to_i
+# prompt user
+puts "Enter how many questions from each category you want in your practice test".cyan
+puts "Please enter only an integer".cyan
+
+
+# get user requests for each category
+category_requests = {}
+
+categories.keys.each_with_index do |category, i|
+
+  cat = category.dup
+  cat[0] = cat[0].upcase
+  num_questions = categories[category]
+
+  puts puts
+  puts "Category #{i + 1}: " + "#{cat}".magenta
+  puts "#{num_questions} available questions"
+  puts
+  puts "Number of".green + " #{category} ".green + "questions to add to this test:".green
+
+  input = gets.chomp
+  # until they input a valid number of questions, keep updating
+  # the input value
+  until ("0"..num_questions.to_s).include?(input)
+    puts
+    # if they did input an integer...
+    if input.to_i.to_s == input
+      puts "There are only #{num_questions} questions" if input.to_i > num_questions
+      puts "You can't have a negative number of questions" if input.to_i < 0
+    else
+      puts "You must input an integer"
+    end
+
+    puts "Please enter a valid number of questions:".light_red
+    input = gets.chomp
+  end
+  # assign the value in the hash to their valid input
+  category_requests[category] = input.to_i
 end
+
 
 # make test array for each category
 master = Array.new
