@@ -3,13 +3,18 @@ require 'colorize'
 
 # Instructions
 system("clear")
-puts "Welcome to Mallory's a/A Practice Assessment Generator".cyan
+puts
+puts "Welcome to Syrie's adaption of Mallory's a/A Practice Assessment Generator".cyan
+puts
 puts "This generator will create a practice test based on your input. " \
       "You can choose how many problems from each category to include in your test. "
+puts
 puts "This program will generate 3 files in this folder: practice_test, spec, and solution. " \
       "Complete the practice_test file, running the spec file to check your answers. " \
       "When your time is up (you are timing yourself, right?), compare your answers to the solutions."
+puts
 puts "Good luck!"
+puts
 
 # read in csv with test info
 tests = CSV.read('list.csv', headers: true, header_converters: :symbol, converters: :all)
