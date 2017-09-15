@@ -20,13 +20,19 @@ puts
 tests = CSV.read('list.csv', headers: true, header_converters: :symbol, converters: :all)
 
 # list possible categories
-categories = Array.new
+categories = Hash.new(0)
 tests.each do |test|
-  categories << test[1]
+  categories[test[1]] += 1
 end
-categories = categories.uniq
-puts "Possible categories: #{categories.join(", ")}".magenta
 puts
+puts "Possible categories:".magenta
+
+categories.keys.each do |category|
+  cat = category.dup
+  cat[0] = cat[0].upcase
+  puts "   #{cat} — #{categories[category]} available questions"
+end
+puts puts
 
 # get user request
 puts "Input your requests, separated by commas and spaces please"
