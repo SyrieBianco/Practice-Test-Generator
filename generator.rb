@@ -117,6 +117,7 @@ unless alpha
     num = category_requests[category]
     master = master.concat(problems_in_category.sample(num))
   end
+  master = master.shuffle
 end
 
 
