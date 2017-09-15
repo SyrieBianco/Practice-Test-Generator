@@ -130,12 +130,33 @@ solution = File.open("solution.rb", "w")
 spec << "require 'rspec'" << "\n"
 spec << "require_relative 'practice_test'" << "\n"
 
-# loop through master tests and add text to the new files
-master.each do |test|
-  practice_test << File.read(test[2]) << "\n"
-  spec << File.read(test[3]) << "\n"
-  solution << File.read(test[4]) << "\n"
+# set up file format
+
+def format_name(snake_case_name, i)
+  split = snake_case_name.split("_")
+  formatted = split.each { |word| word[0] = word[0].upcase }.join(" ")
+
+  "Problem #{i + 1}: #{formatted}"
 end
+
+def format_file(file, test, file_i, test_i)
+  formatted_name = format_name(test[0], test_i)
+  file << "#______________________________________________________________________" << "\n"
+  file << "# #{formatted_name}" << "\n"
+  file << "#______________________________________________________________________" << "\n"
+  file << "\n\n"
+  file << File.read(test[file_i]) << "\n"
+  file << "\n\n\n\n"
+end
+
+
+# loop through master tests and add text to the new files
+master.each_with_index do |test, i|
+  format_file(practice_test, test, 2, i)
+  format_file(solution, test, 4, i)
+  spec << File.read(test[3]) << "\n"
+end
+
 
 # close the files that were just created
 practice_test.close
