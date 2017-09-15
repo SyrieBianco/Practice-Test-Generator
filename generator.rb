@@ -99,20 +99,26 @@ end
 master = alpha ? tests : Array.new
 
 
-# make test array for each category
-master = Array.new
-categories.each do |category|
-  problems_in_category = Array.new
-  tests.each do |test|
-    if category == test[1]
-      problems_in_category << test
-    end
-  end
+# if they do not want it aplhabetical, select random questions
+unless alpha
+  categories.keys.each do |category|
+    # make a new array of questions for each category
+    problems_in_category = Array.new
 
-  # pick tests at random from each category
-  n = categoryrequests[category]
-  master = master.concat(problems_in_category.sample(n))
+    #shovel tests into the array if they belong to the category
+    tests.each do |test|
+      if category == test[1]
+      problems_in_category << test
+      end
+    end
+
+
+    # pick tests at random from each category
+    num = category_requests[category]
+    master = master.concat(problems_in_category.sample(num))
+  end
 end
+
 
 # create new test, spec and solution files
 practice_test = File.open("practice_test.rb", "w")
