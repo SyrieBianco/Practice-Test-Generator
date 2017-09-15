@@ -1,18 +1,29 @@
 # A refactor of Mallory's Practice Test generator
 
-This practice test generator was extremely useful to me as a student, but I was interested in expanding its use cases. The main adaptation was to make it easier to generate a master list of all of the questions, and allowing the user to have the option to order the questions alphabetically.
+[Mallory's Original Practice Test Generator](https://github.com/mallorybulkley/aa-practice-test-generator)
+
+This practice test generator was extremely useful to me as a student, but I was interested in expanding its use cases.
+
+The main adaptation was to make it easier to generate a master list of all of the questions, and allowing the user to have the option to order the questions alphabetically.
 
 The purpose of this is to be able to create an index of the questions that is easy to cross reference to individual solution and spec files, as well as having the ability to run the combined spec file on all of the tests.
 
 The rest of the refactoring was mostly stylistic:
 - re-styling the output files so that they were easier to navigate modularly
 - adding the total number of available questions to the terminal interface
-- restricting user input and protecting against invalid inputs
+- restricting user input and protecting against invalid inputs:
+  - separating out question choice into separate inputs
+  - validating user input
+  -
 - re-styling to improve ux; e.g. adding whitespace, coloring and indentation to make the file more legible
 - refactoring arrays into hashes to be able to display more information for each category
 
 
 
+
+
+Mallory's orignal instructions can be found below.
+The original repo can be found [here](https://github.com/mallorybulkley/aa-practice-test-generator)
 
 
 
