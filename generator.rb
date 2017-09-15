@@ -76,6 +76,29 @@ categories.keys.each_with_index do |category, i|
 end
 
 
+# check to see if they requested all possible questions
+all_qs = categories.keys.all? { |cat| categories[cat] == category_requests[cat] }
+
+# ask if the user wants the questions in alphabetical order if they
+# ask for all possible questions
+alpha = false
+
+if all_qs
+  puts puts
+  puts "You selected to make a test with all of the possible questions"
+  puts "Would you like the questions in alphabetical order? [y/n]"
+  res = gets.chomp
+  until res == "y" || res == "n"
+    puts 'Please respond "y" or "n"'
+    res = gets.chomp
+  end
+  alpha = res == "y" ? true : false
+end
+
+# make a master list of questions
+master = alpha ? tests : Array.new
+
+
 # make test array for each category
 master = Array.new
 categories.each do |category|
