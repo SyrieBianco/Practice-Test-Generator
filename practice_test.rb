@@ -309,21 +309,8 @@ end
 # jumble_sort("hello") => "ehllo"
 # jumble_sort("hello", ['o', 'l', 'h', 'e']) => 'ollhe'
 
-def jumble_sort(str, alphabet = [])
-  alphabet += ('a'..'z')
-  result = Array.new(str.length)
-
-  str.chars.each do |ch|
-    index = alphabet.index(ch.downcase)
-    if index
-
-    else
-      result << ch
-      next
-    end
-  end
-
-
+def jumble_sort(str, alphabet = ('a'..'z').to_a )
+  str.chars.sort_by { |ch| alphabet.index(ch.downcase) }.join("")
 end
 
 
